@@ -4,23 +4,24 @@ env:
   variables:
     IMAGE_REPO_NAME: "udacity/coworking-analytics"
     IMAGE_TAG: "latest"
+    AWS_ECR_URL: "350397294364.dkr.ecr.us-east-1.amazonaws.com"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 350397294364.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ECR_URL
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $IMAGE_REPO_NAME analytics/
-      - docker tag $IMAGE_REPO_NAME:latest 350397294364.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
+      - docker tag $IMAGE_REPO_NAME:latest $AWS_ECR_URL/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image to ECR...
-      - docker push 350397294364.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
+      - docker push $AWS_ECR_URL/$IMAGE_REPO_NAME:$CODEBUILD_BUILD_NUMBER
 
 artifacts:
   files:
