@@ -14,4 +14,4 @@ metadata:
   name: postgresql-secret
 type: Opaque
 data:
-  DB_PASSWORD: "mypassword"
+  DB_PASSWORD: bXlwYXNzd29yZA==
