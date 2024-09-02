@@ -1,5 +1,7 @@
 import logging
 import os
+from dotenv import load_dotenv
+load_dotenv("db.env")
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
