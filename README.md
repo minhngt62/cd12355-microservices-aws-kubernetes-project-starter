@@ -21,15 +21,15 @@ Remeber to install `eksctl` if it does not built in: [Guideline](https://docs.aw
 
 ### Local Environment
 1. Python Environment - run Python 3.6+ applications and install Python dependencies via `pip`
-2. `Docker CLI` - build and run Docker images locally
-3. `kubectl` - run commands against a Kubernetes cluster
+2. Docker CLI - build and run Docker images locally
+3. kubectl - run commands against a Kubernetes cluster
 
 ### Remote Resources
-1. `AWS CodeBuild` - build Docker images remotely
+1. AWS CodeBuild - build Docker images remotely
 2. AWS ECR - host Docker images
-3. `Kubernetes Environment` with `AWS EKS` - run applications in k8s
-4. `AWS CloudWatch` - monitor activity and logs in EKS
-5. `GitHub` - pull and clone code
+3. Kubernetes Environment with AWS EKS - run applications in k8s
+4. AWS CloudWatch - monitor activity and logs in EKS
+5. GitHub - pull and clone code
 
 ## Setup
 
@@ -83,8 +83,8 @@ Start-Job {kubectl port-forward svc/postgresql-service 5433:5432}
 
 The purpose of this step is to provide a systematic approach to pushing the Docker image of the coworking application into Amazon ECR, using `buildspec.yaml`:
 
-1. Create an `Amazon ECR` repository on your AWS console.
-2. Create an `Amazon CodeBuild` project that is connected to this GitHub repository.
+1. Create an Amazon ECR repository on your AWS console.
+2. Create an Amazon CodeBuild project that is connected to this GitHub repository.
 
 In `buildspec.yaml`, please change the variable `AWS_ECR_URL` in `env` to your newly-created Amazon ECR. **Now with each Git push, an new, updated image will be created automatically and push to the ECR**.
 
